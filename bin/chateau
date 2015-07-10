@@ -22,8 +22,8 @@ if (argv.h || argv.help) {
 var configFile = path.resolve(argv.f || 'config.js');
 var databasePort = argv.p;
 var databaseHost = argv.host;
-var myPort = argv.myPort;
-var myHost = argv.myHost;
+var myPort = argv['my-port'];
+var myHost = argv['my-host'];
 
 if(!fs.existsSync(configFile))
 {
@@ -39,7 +39,7 @@ if(databaseHost != null){
     configFile.host = databaseHost;
 }
 if(myPort != null){
-    configFile.expresss = myPort;
+    configFile.express = myPort;
 }
 if(myHost != null){
     configFile.network = myHost;
