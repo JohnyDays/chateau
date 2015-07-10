@@ -9,13 +9,17 @@ if (argv.h || argv.help) {
     "usage: chateau [options]",
     "",
     "options:",
-    "  -f [config_file]   Default file: config.js",
-    "  -h                 Shows this help",
+    "  -f [config_file]        Default file: config.js",
+    "  -p [database_port]      Default port: 28015",
+    "  --host [database_host]  Default host: localhost",
+    "  -h                      Shows this help",
     ].join('\n'));
     process.exit();
 }
 
 var configFile = path.resolve(argv.f || 'config.js');
+var databasePort = argv.p;
+var databaseHost = argv.host;
 
 if(!fs.existsSync(configFile))
 {
@@ -24,4 +28,10 @@ if(!fs.existsSync(configFile))
 }
 
 configFile = require(configFile);
+if(databasePort != null){
+    configFile.port = databasePort;
+}
+if(databaseHost != null){
+    configFile.host = databaseHost;
+}
 require('../app.js')(configFile);
